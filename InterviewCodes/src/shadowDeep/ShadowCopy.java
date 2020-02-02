@@ -6,10 +6,24 @@ public class ShadowCopy {
 
 		BS obj = new BS(12, "sad", new AS(1, "asdasd"));
 		obj.print();
-
+		/**
+		 * Shallow Copy Example
+		 */
 		BS onj = obj.clone();
 		obj.ob.setS("dfgdfgdfg");
+		obj.setS("dsds");
 		onj.print();
+
+		/**
+		 * Deep Copy Example
+		 */
+
+		BD obja = new BD(12, "sad", new AS(1, "asdasd"));
+		obja.print();
+		BD onjas = obja.clone();
+		obja.ob.setS("dfgdfgdfg");
+		obja.setS("dsds");
+		onjas.print();
 
 	}
 
@@ -67,9 +81,81 @@ class BS implements Cloneable {
 
 	}
 
-	public BS clone() throws CloneNotSupportedException {
+	protected BS clone() throws CloneNotSupportedException {
+		/**
+		 * Shallow copy : Immutable,primitive fields are copied Mutable non primitive
+		 * references are copied only..
+		 */
 
 		return (BS) super.clone();
+	}
+
+}
+
+class BD implements Cloneable {
+
+	Integer x;
+	String s;
+	AS ob = null;
+
+	public Integer getX() {
+		return x;
+	}
+
+	public void setX(Integer x) {
+		this.x = x;
+	}
+
+	public String getS() {
+		return s;
+	}
+
+	public void setS(String s) {
+		this.s = s;
+	}
+
+	public AS getOb() {
+		return ob;
+	}
+
+	public void setOb(AS ob) {
+		this.ob = ob;
+	}
+
+	public BD(Integer x, String s, AS ob) {
+		super();
+		this.x = x;
+		this.s = s;
+		this.ob = ob;
+	}
+
+	public BD() {
+		super();
+	}
+
+	@Override
+	public String toString() {
+		return "BS [x=" + x + ", s=" + s + ", ob=" + ob + "]";
+	}
+
+	public void print() {
+
+		System.out.println(this.toString());
+
+	}
+
+	protected BD clone() throws CloneNotSupportedException {
+		/**
+		 * Shallow copy : Immutable,primitive fields are copied Mutable non primitive
+		 * Object are copied also..
+		 */
+		AS objTemp = new AS();
+		BD obj = (BD) super.clone();
+		objTemp.s = obj.getOb().getS();
+		objTemp.x = obj.getOb().getX();
+		obj.setOb(objTemp);
+
+		return obj;
 	}
 
 }
