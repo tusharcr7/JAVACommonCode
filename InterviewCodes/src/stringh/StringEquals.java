@@ -13,7 +13,17 @@ public class StringEquals {
 
 		System.out.println(sb.equals("a"));
 		System.out.println(sbt.equals("a"));
-
+		
+         g(10);
+         g();
 	}
 
+	
+	public static void g(int... i)
+	{
+		System.out.println(i.length);
+		System.out.println(i[0]);
+		
+		
+	}
 }
