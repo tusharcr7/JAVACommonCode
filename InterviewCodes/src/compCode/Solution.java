@@ -32,12 +32,16 @@ public class Solution {
 		} else {
 			System.out.println("No");
 		}
+		HashMap<Integer, Integer> obj=new HashMap<Integer, Integer>();
+		obj.put(01, 01);
+		
 
 	}
 
 	private static final Scanner scanner = new Scanner(System.in);
 
 	public static void main(String[] args) {
+		System.out.println(0&20);
 		String[] mn = scanner.nextLine().split(" ");
 
 		int m = Integer.parseInt(mn[0]);
